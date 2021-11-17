@@ -4,7 +4,6 @@ TP 5 VIDEOJUEGO
 */
 
 
-
 Juego juego;
 
 
@@ -15,7 +14,7 @@ void setup() {
 }
 
 void draw() {
-  background(255);
+
   juego.actualizar();
 }
 

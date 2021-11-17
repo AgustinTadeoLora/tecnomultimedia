@@ -2,18 +2,17 @@ class Obstaculo {
   float x, y, velX,ancho,alto;
   float rad_= 20;
   PImage img;
-
+  boolean colisionado;
 
 
   Obstaculo() {
     x= 1500+random(0,4000);
     y= random (490, 585);
     String objeto = "Obstaculo"+int(random(2,6))+".PNG";
+    
     img=loadImage(objeto);
     ancho=40;
     alto=40;
- 
-
     velX= -10;
   }
 
@@ -32,9 +31,9 @@ class Obstaculo {
     popStyle();
     push();
     
-      //fill(255,0,255);
+      fill(255,0,255);
 
-    //rect(x+17,y+14,ancho-20,alto-20);
+    rect(x+17,y+14,ancho-20,alto-20);
     pop();
   }
     boolean colision(float x_ , float y_ , float ancho_ , float alto_ ){
@@ -42,10 +41,10 @@ class Obstaculo {
       x-ancho/2 < x_+ancho_/2
       && x+ancho/2 > x_-ancho_/2
       && y-alto/2 < y_+alto_/2
-      && y+alto/2 > y_-alto_/2
+      && y+alto/2 > y_-alto_/2 && this.colisionado == false
     ) {
      //hay colision:
-
+  this.colisionado=true;
      return true;
     } else {
      return false; 
