@@ -36,22 +36,15 @@ class Obstaculo {
     rect(x+17,y+14,ancho-20,alto-20);
     pop();
   }
-    boolean colision(float x_ , float y_ , float ancho_ , float alto_ ){
-    if ( 
-      x-ancho/2 < x_+ancho_/2
-      && x+ancho/2 > x_-ancho_/2
-      && y-alto/2 < y_+alto_/2
-      && y+alto/2 > y_-alto_/2 && this.colisionado == false
-    ) {
-     //hay colision:
-  this.colisionado=true;
-     return true;
-    } else {
-     return false; 
-    }
-    
-    
-  }
- 
+  
+ boolean colisionConPersonaje(float x2, float y2, float w2, float h2){
+   boolean valor;
+   if (x > x2+w2 || x+ancho < x2 || y > y2 + h2 || y+alto < y2 ){
+     valor = false;
+   }else{
+     valor = true;
+   }
+   return valor;
+ }
 
 }

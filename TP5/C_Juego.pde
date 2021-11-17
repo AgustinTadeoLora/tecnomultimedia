@@ -12,16 +12,17 @@ class Juego {
   Textos texto3; //perdiste
   Textos texto4;
   Textos vidas;
+  Meta Final;
 
   Juego() {
     cantVidas=3;
     estadoJuego = "inicio";
     boton1 = new Boton( "", width/2, height/2, 300, 100 ); //comenzar juego
     boton2 = new Boton( "Volver a pantalla de inicio", width/2, height-60, 300, 100 );
-
+    boton3 = new Boton( "Sobreviviste", width/2, height-60, 300, 100 );
     texto1= new Textos("vidas: ", 100, 20, 30);
     texto2= new Textos("Sobreviviste!!", width/2, height/2, 60);
-    texto3= new Textos("Te atraparon!, una pena", width/2, height/2, 60);
+    Final = new Meta ();
     texto4= new Textos("Da click en el centro de la pantalla para comenzar", width/2, height/2+10, 30);
     vidas = new Textos("Vidas: ", 40, 25, 20); 
     fondo = new Fondo(); 
@@ -37,6 +38,7 @@ class Juego {
   void actualizar() {
     println(estadoJuego);
     if ( estadoJuego.equals("inicio")) {
+
       background(0);
       texto4.escribir();
       boton1.actualizar();
@@ -44,13 +46,16 @@ class Juego {
       //mostrar lo que corresponde a jugar:
 
       fondo.actualizar();
+      Final.Final();
       vidas.escribir();
       for (int i = 0; i<cantObstaculos; i++) {
         obstaculo[i].colocarObstaculo();
 
-        if ( obstaculo[i].colision(player.x+15, player.y+100, player.ancho-80, player.alto-135)) {
+        if ( obstaculo[i].colisionConPersonaje(player.x+15, player.y+100, player.ancho-80, player.alto-135)) {
           cantVidas--;
           println(cantVidas);
+          obstaculo[i].x= 1500+ random (0, 4000);
+          obstaculo[i].y= random(490, 585);
         }
       }
       if (cantVidas <= 0) {
@@ -59,9 +64,10 @@ class Juego {
         boton2.actualizar();
         estadoJuego="perder";
       }
-      if ( cantVidas !=0 ) {
-        player.player();
+     if ( colisionConMeta (player.x+15, player.y+100, player.ancho-80, player.alto-135)) {
+        estadoJuego="ganaste";
       }
+      player.player();
     }
   }
 
@@ -72,7 +78,8 @@ class Juego {
     } else if (nuevoEstado_.equals("jugando") ) {
       //pongo en cero lo valores de inicio
     } else if (nuevoEstado_.equals("perder") ) {
-      nuevoEstado_= "inicio";
+      estadoJuego= "inicio";
+    } else if (nuevoEstado_.equals("ganaste") ) {
     }
   }
 
@@ -81,12 +88,23 @@ class Juego {
     if ( estadoJuego.equals("inicio")) {
       if ( boton1.mouseEstaEncima() ) {
         cambiarEstado("jugando");
+        cantVidas=3;
+        for (int i = 0; i<cantObstaculos; i++) {
+          obstaculo[i].x= 1500+ random (0, 4000);
+          obstaculo[i].y= random(490, 585);
+        }
+        player.x=0;
+        player.y= 400;
       }
     } else if (estadoJuego.equals("jugando")) {
       //mostrar lo que corresponde a jugar:
     } else if (estadoJuego.equals("perder"))
       if ( boton2.mouseEstaEncima() ) {
         cambiarEstado("inicio");
-      }
-  }
+      } else if  (estadoJuego.equals("ganaste")) 
+       if(  boton3.mouseEstaEncima() ){ 
+         cambiarEstado("inicio");
+       }
+        
+    }
 }
