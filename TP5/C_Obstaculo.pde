@@ -7,7 +7,7 @@ class Obstaculo {
 
   Obstaculo() {
     x= 1500+random(0,4000);
-    y= random (490, 585);
+    y= random (460, 585);
     String objeto = "Obstaculo"+int(random(2,6))+".PNG";
     
     img=loadImage(objeto);
@@ -29,12 +29,12 @@ class Obstaculo {
   
     popMatrix();
     popStyle();
-    push();
+   // push();
     
-      fill(255,0,255);
+    //  fill(255,0,255);
 
-    rect(x+17,y+14,ancho-20,alto-20);
-    pop();
+  //  rect(x+17,y+14,ancho-20,alto-20);
+    //pop();
   }
   
  boolean colisionConPersonaje(float x2, float y2, float w2, float h2){

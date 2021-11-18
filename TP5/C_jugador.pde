@@ -29,8 +29,8 @@ class Jugador {
     popStyle();
     push();
   
-    noFill();
-    rect(x+35,y+118,ancho-60,alto-130);
+  //  noFill();
+    //rect(x+35,y+118,ancho-60,alto-130);
     pop();
     
     

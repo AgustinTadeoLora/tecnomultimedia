@@ -1,6 +1,8 @@
-/* AGUSTIN TADEO LORA
+/* 
+AGUSTIN TADEO LORA
 LEGAJO: 88105/5
 TP 5 VIDEOJUEGO
+link video explicativo: https://www.youtube.com/watch?v=QXk_jCHnkVY&ab_channel=agustinlora  
 */
 
 

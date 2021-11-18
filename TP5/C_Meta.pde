@@ -5,7 +5,7 @@ class Meta {
 
 
   Meta() {
-    x= 1500;
+    x= 10500;
     ancho = 400; 
     alto = 400;
     img= loadImage("meta.png");
@@ -16,7 +16,7 @@ class Meta {
     pushStyle();
     pushMatrix();
 
-    image(img, x, 350, ancho, alto);
+    image(img,x , 350, ancho, alto);
       x+=velX;
     popMatrix();
     popStyle();
