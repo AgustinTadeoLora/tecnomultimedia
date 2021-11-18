@@ -64,7 +64,9 @@ class Juego {
         boton2.actualizar();
         estadoJuego="perder";
       }
-     if ( colisionConMeta (player.x+15, player.y+100, player.ancho-80, player.alto-135)) {
+      if (Final.colisionConLaMeta (player.x+15, player.y+100, player.ancho-80, player.alto-135)) {
+        player.player();
+        boton3.actualizar();
         estadoJuego="ganaste";
       }
       player.player();
@@ -80,6 +82,7 @@ class Juego {
     } else if (nuevoEstado_.equals("perder") ) {
       estadoJuego= "inicio";
     } else if (nuevoEstado_.equals("ganaste") ) {
+      estadoJuego="inicio";
     }
   }
 
@@ -95,6 +98,7 @@ class Juego {
         }
         player.x=0;
         player.y= 400;
+        Final.x=1500;
       }
     } else if (estadoJuego.equals("jugando")) {
       //mostrar lo que corresponde a jugar:
@@ -102,9 +106,8 @@ class Juego {
       if ( boton2.mouseEstaEncima() ) {
         cambiarEstado("inicio");
       } else if  (estadoJuego.equals("ganaste")) 
-       if(  boton3.mouseEstaEncima() ){ 
-         cambiarEstado("inicio");
-       }
-        
-    }
+        if (  boton3.mouseEstaEncima() ) { 
+          cambiarEstado("inicio");
+        }
+  }
 }

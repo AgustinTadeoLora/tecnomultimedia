@@ -5,7 +5,7 @@ class Meta {
 
 
   Meta() {
-    x= 20000;
+    x= 1500;
     ancho = 400; 
     alto = 400;
     img= loadImage("meta.png");
@@ -26,7 +26,7 @@ class Meta {
     
     pop();
   }
-  boolean colisionConMeta(float x2, float y2, float w2, float h2){
+  boolean colisionConLaMeta(float x2, float y2, float w2, float h2){
    boolean valor;
    if (x > x2+w2 || x+ancho < x2 || y2 > y2 + h2 || y2+alto < y2 ){
      valor = false;
